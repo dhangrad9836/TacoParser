@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace LoggingKata.Test
@@ -30,11 +29,17 @@ namespace LoggingKata.Test
             //       Each "line" from your .csv file
             //       represents a TacoBell location
 
-            //Arrange
+            //Arrange - create the object
+            var longitudeParser = new TacoParser();
 
-            //Act
+            //Act - call the method in the TacoParser class
+            //remember that var actual is an ITrackable which contains Location which that belongs to the Point.cs class which contains Longitude
+            //so you can do actual.Location.Longitude
+            var actual = longitudeParser.Parse(line);
 
-            //Assert
+            //Assert - here we pass in the expected and we need to drill down to the 
+            // actual.Location.Longitude in order to compare both as doubles b/c acutal is an ITrackable
+            Assert.Equal(expected, actual.Location.Longitude);
         }
 
 
